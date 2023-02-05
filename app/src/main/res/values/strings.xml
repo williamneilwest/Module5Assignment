@@ -7,4 +7,9 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
     <string name="stockpal_logo">stockpal logo</string>
+    <string name="name">Name</string>
+    <string name="id">ID</string>
+    <string name="inventory">Inventory</string>
+    <string name="add_item">Add Item</string>
+    <string name="delete_item">Delete Item</string>
 </resources>
