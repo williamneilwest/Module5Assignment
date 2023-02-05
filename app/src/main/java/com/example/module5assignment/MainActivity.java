@@ -30,7 +30,7 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
     private final int REQUEST_WRITE_CODE = 0;
     private static final String TAG = "MainActivity";
-    private static final int STORAGE_PERMISSION_CODE = 101;
+    private static final int SMS_PERMISSIONS_CODE = 1;
     TextView text;
     DatabaseHelper mDatabaseHelper;
     private Button btnViewData;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
-        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+        checkSMSPermission(Manifest.permission.SEND_SMS, SMS_PERMISSIONS_CODE);
         editText = (EditText) findViewById(R.id.editText);
         mListView = (ListView) findViewById(R.id.listView);
         Button btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 if (editText.length() != 0) {
                     AddData(newEntry);
                     populateListView();
-
                     editText.setText("");
                 }
                 else{
@@ -87,12 +86,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void checkPermission(String permission, int requestCode) {
+    public void checkSMSPermission(String permission, int requestCode) {
         // Checking if permission is not granted
         if (ContextCompat.checkSelfPermission(MainActivity.this, permission) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{permission}, requestCode);
         } else {
             Toast.makeText(MainActivity.this, "Permission already granted", Toast.LENGTH_SHORT).show();
+
+
         }
     }
 
@@ -120,10 +121,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void populateListView() {
-        Log.d(TAG, "populateListView: Displaying data in the ListView.");
-        Toast.makeText(this, "populateListView: Displaying data in the ListView.", Toast.LENGTH_SHORT).show();
-
-
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
         while (data.moveToNext()) {
