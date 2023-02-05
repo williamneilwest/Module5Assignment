@@ -14,18 +14,10 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="StockPal"
         android:supportsRtl="true"
         android:theme="@style/Theme.Module5Assignment"
         tools:targetApi="31">
-        <activity
-            android:name=".Permission"
-            android:exported="false"
-            android:windowSoftInputMode="stateVisible|adjustNothing"/>
-        <activity
-            android:name=".Database"
-            android:exported="false"
-            android:windowSoftInputMode="stateVisible|adjustNothing"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
